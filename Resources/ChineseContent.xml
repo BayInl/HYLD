@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ <plist>  
+	<dict>
+   		<key>1000</key>  
+    	<string>荒野乱斗</string>  
+	</dict>
+	<dict>
+   		<key>1001</key>  
+    	<string>你好，世界！</string>  
+	</dict>
+	<dict>
+	 	<key>1002</key>  
+     	<string>世界，你好！</string> 
+ 	</dict>
+ </plist>

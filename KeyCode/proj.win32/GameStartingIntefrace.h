@@ -2,7 +2,8 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-
+#include"ChineseWord.h"
+extern ChineseWord Words;
 class GameStartingIntefrace : public cocos2d::Scene
 {
 public:

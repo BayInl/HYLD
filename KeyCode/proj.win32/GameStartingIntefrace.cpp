@@ -1,5 +1,5 @@
 #include "GameStartingIntefrace.h"
-
+#include"ChineseWord.h"
 USING_NS_CC;
 
 Scene* GameStartingIntefrace::createScene()
@@ -23,7 +23,7 @@ bool GameStartingIntefrace::init()
     {
         return false;
     }
-
+    
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -32,11 +32,14 @@ bool GameStartingIntefrace::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-        "myclose4.png",
-        "myclose3.png",
-        CC_CALLBACK_1(GameStartingIntefrace::menuCloseCallback, this));
-
+    
+    //auto closeItem = MenuItemImage::create("myclose4.png","myclose3.png", "Im goint to end the game",CC_CALLBACK_1(GameStartingIntefrace::menuCloseCallback, this));
+        //CC_CALLBACK_1(GameStartingIntefrace::menuCloseCallback, this); 
+        
+    auto closeItem = MenuItemImage::create("myclose4.png", "myclose3.png",
+        [&](Ref* sender) {
+            CCLOG("Im goint to end the game"); Director::getInstance()->end();
+        });
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
         closeItem->getContentSize().height <= 0)
@@ -61,7 +64,8 @@ bool GameStartingIntefrace::init()
     // add a label shows "Hello World"
     // create and initialize a label
 
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+    auto label = Label::createWithSystemFont(Words.prt_cnWords.at(1001).asString(), "arial", 24);
+    //auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
     if (label == nullptr)
     {
         problemLoading("'fonts/Marker Felt.ttf'");
