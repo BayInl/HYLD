@@ -1,7 +1,7 @@
 # HYLDofCocos
 
 #### 介绍
-Cocos
+Cocos2dx
 
 #### 软件架构
 软件架构说明
