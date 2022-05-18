@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
-#include "GameStartingIntefrace.h"
 #include "ChineseWord.h"
+#include"GameIntefrace.hpp"
 ChineseWord Words;
 // #define USE_AUDIO_ENGINE 1bvcZX
 
@@ -50,7 +50,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect(Words.prt_cnWords.at(1000).asString(), cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
+        glview = GLViewImpl::createWithRect(Words.getWord("1000"), cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
 #else
         glview = GLViewImpl::create(Words.prt_cnWords.at(1000).asString());
 #endif
@@ -87,11 +87,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = GameStartingIntefrace::createScene();
-
+    //auto scene = SettingScene::createScene();
+    auto scene = GameIntefrace::createScene();
     // run
     director->runWithScene(scene);
-
+    
     return true;
 }
 

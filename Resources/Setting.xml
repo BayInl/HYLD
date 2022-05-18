@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
  <plist>  
 	<dict>
-   		<key>1000</key>  
-    	<string>荒野乱斗</string>  
+   		<key>1001</key>  
+    	<string>1</string>  
 	</dict>
 	<dict>
-   		<key>1001</key>  
-    	<string>开始游戏</string>  
+   		<key>1002</key>  
+    	<string>1</string>  
 	</dict>
 	<dict>
 	 	<key>1002</key>  
