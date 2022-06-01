@@ -1,23 +1,32 @@
-<?xml version="1.0" encoding="utf-8" ?>
- <plist>  
-	<dict>
-   		<key>1001</key>  
-    	<string>1</string>  
-	</dict>
-	<dict>
-   		<key>1002</key>  
-    	<string>1</string>  
-	</dict>
-	<dict>
-	 	<key>1002</key>  
-     	<string>                      健康游戏忠告</string> 
-	</dict>
-	<dict>
-		<key>1003</key>  
-     	<string>抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</string> 
-	</dict>
-	<dict>
-		<key>1004</key>  
-     	<string>适度游戏益脑，过度游戏伤身。合理安排时间，享受健康生活。</string> 
- 	</dict>
- </plist>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"/>
+
+<plist version="1.0">
+    <dict>
+        <key>1001</key>
+        <string>背景音乐：</string>
+        <key>1002</key>
+        <string>游戏音效：</string>
+
+		<key>Music</key>
+        <string>1</string>
+        <key>Music_1</key>
+        <string>turnon.png</string>
+        <key>Music_2</key>
+        <string>turnoff.png</string>
+        <key>Music_3</key>
+        <string>turnoff.png</string>
+
+		<key>MusicEffect</key>
+        <string>1</string>
+		<key>MusicEffect_1</key>
+        <string>turnon.png</string>
+        <key>MusicEffect_2</key>
+        <string>turnoff.png</string>
+        <key>MusicEffect_3</key>
+        <string>turnoff.png</string>
+
+        
+        
+    </dict>
+</plist>
