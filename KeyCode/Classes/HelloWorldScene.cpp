@@ -54,7 +54,7 @@ bool HelloWorld::init()
         return false;
     }
 
-    //Ô¤¼ÓÔØ
+    //é¢„åŠ è½½
     AudioEngine::preload("SkylightCut.mp3");
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -81,41 +81,41 @@ bool HelloWorld::init()
         closeItem->setPosition(Vec2(x,y));
     }
 
-    // ´´½¨²Ëµ¥
+    // åˆ›å»ºèœå•
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
     // 3. add your codes below...
     
-    //Ôö¼ÓÒ»¸ö½ÇÉ«µÄÊµÀı
+    //å¢åŠ ä¸€ä¸ªè§’è‰²çš„å®ä¾‹
     this->addChild(hero_player);
     hero_player->setPosition(Vec2(100, 200));
-    hero_player->Animater();//ÈÃËü¶¯ÆğÀ´
+    hero_player->Animater();//è®©å®ƒåŠ¨èµ·æ¥
 
-    //Ôö¼ÓÆïÊ¿µÄ´óÕĞÎäÆ÷
+    //å¢åŠ éª‘å£«çš„å¤§æ‹›æ­¦å™¨
     this->addChild(sword_bonus);
     sword_bonus->setPosition(hero_player->getPosition()+Vec2(100,50));
     sword_bonus->setVisible(false);
     this->addChild(weapon_player);
     weapon_player->setPosition(hero_player->getPosition() + Vec2(70, 30));
 
-    // ¼üÅÌÊÂ¼ş¼àÌı
+    // é”®ç›˜äº‹ä»¶ç›‘å¬
    auto keyListener = EventListenerKeyboard::create();
    keyListener->onKeyPressed = CC_CALLBACK_2(HelloWorld::onKeyPressedKnight, this);
    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyListener, this);
 
-   // ·¢Éä×Óµ¯
-   // ¶¨Òå´¥ÃşÊÂ¼şµÄ¼àÌıÆ÷¡£¼àÌıÆ÷ÓĞÁ½ÖÖ£º
-   // 1.EventListenerTouchOneByOne£º´ËÀàĞÍ¶ÔÃ¿¸ö´¥ÃşÊÂ¼şµ÷ÓÃÒ»´Î»Øµ÷·½·¨¡£
-   // 2.EventListenerTouchAllAtOnce£º´ËÀàĞÍ¶ÔËùÓĞµÄ´¥ÃşÊÂ¼şµ÷ÓÃÒ»´Î»Øµ÷·½·¨¡£
+   // å‘å°„å­å¼¹
+   // å®šä¹‰è§¦æ‘¸äº‹ä»¶çš„ç›‘å¬å™¨ã€‚ç›‘å¬å™¨æœ‰ä¸¤ç§ï¼š
+   // 1.EventListenerTouchOneByOneï¼šæ­¤ç±»å‹å¯¹æ¯ä¸ªè§¦æ‘¸äº‹ä»¶è°ƒç”¨ä¸€æ¬¡å›è°ƒæ–¹æ³•ã€‚
+   // 2.EventListenerTouchAllAtOnceï¼šæ­¤ç±»å‹å¯¹æ‰€æœ‰çš„è§¦æ‘¸äº‹ä»¶è°ƒç”¨ä¸€æ¬¡å›è°ƒæ–¹æ³•ã€‚
    auto mouseListener = EventListenerTouchOneByOne::create();
-   // ¶¨Òå»Øµ÷º¯ÊıonTouchBegan():ÊÖÖ¸µÚÒ»´ÎÅöµ½ÆÁÄ»Ê±±»µ÷ÓÃ¡£
+   // å®šä¹‰å›è°ƒå‡½æ•°onTouchBegan():æ‰‹æŒ‡ç¬¬ä¸€æ¬¡ç¢°åˆ°å±å¹•æ—¶è¢«è°ƒç”¨ã€‚
    mouseListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
-   // Ê¹ÓÃEventDispatcherÀ´´¦Àí¸÷ÖÖ¸÷ÑùµÄÊÂ¼ş£¬Èç´¥ÃşºÍÆäËû¼üÅÌÊÂ¼ş¡£
+   // ä½¿ç”¨EventDispatcheræ¥å¤„ç†å„ç§å„æ ·çš„äº‹ä»¶ï¼Œå¦‚è§¦æ‘¸å’Œå…¶ä»–é”®ç›˜äº‹ä»¶ã€‚
    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, weapon_player);
 
-   //ÉèÖÃ±³¾°ÒôÀÖ
+   //è®¾ç½®èƒŒæ™¯éŸ³ä¹
    auto backgroundAudioID = AudioEngine::play2d("goldenslaughterer.mp3", true);
    AudioEngine::resume(backgroundAudioID);
 
@@ -125,19 +125,19 @@ bool HelloWorld::init()
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
-    //¹Ø±Õ³ÌĞò
+    //å…³é—­ç¨‹åº
     Director::getInstance()->end();
 
 }
 
 
-//ÆïÊ¿×¨Êô¼üÅÌ¼àÌı
+//éª‘å£«ä¸“å±é”®ç›˜ç›‘å¬
 void HelloWorld::onKeyPressedKnight(EventKeyboard::KeyCode keyCode, Event* event) 
 {
     log("Key with keycode %d pressed", keyCode);
-    switch (keyCode)  //²Ù¿Ø·½Ê½£ºWSAD
+    switch (keyCode)  //æ“æ§æ–¹å¼ï¼šWSAD
     {
-    case EventKeyboard::KeyCode::KEY_D: //°´ÏÂDÊ±½ÇÉ«ÎªÏòÓÒ
+    case EventKeyboard::KeyCode::KEY_D: //æŒ‰ä¸‹Dæ—¶è§’è‰²ä¸ºå‘å³
     {
         auto moveBy = MoveBy::create(0.5f, Vec2(20, 0));
         auto action = Sequence::create(moveBy, nullptr);
@@ -151,7 +151,7 @@ void HelloWorld::onKeyPressedKnight(EventKeyboard::KeyCode keyCode, Event* event
         sword_bonus->runAction(action->clone());
         break;
     }
-    case EventKeyboard::KeyCode::KEY_A: //°´ÏÂAÊ±½ÇÉ«ÎªÏò×ó
+    case EventKeyboard::KeyCode::KEY_A: //æŒ‰ä¸‹Aæ—¶è§’è‰²ä¸ºå‘å·¦
     {
         auto moveBy = MoveBy::create(0.5f, Vec2(-20, 0));
         auto action = Sequence::create(moveBy ,nullptr);
@@ -183,7 +183,7 @@ void HelloWorld::onKeyPressedKnight(EventKeyboard::KeyCode keyCode, Event* event
         sword_bonus->runAction(action->clone());
         break;
     }
-    case EventKeyboard::KeyCode::KEY_Q:  //´óÕĞ
+    case EventKeyboard::KeyCode::KEY_Q:  //å¤§æ‹›
     {
         if (hero_player->getEnergy() >= ENERGYMAX_KNIGHT)
         {
@@ -221,29 +221,31 @@ void HelloWorld::onKeyPressedKnight(EventKeyboard::KeyCode keyCode, Event* event
 
 bool HelloWorld::onTouchBegan(Touch* touch, Event* unused_event) {
     // 1 - Just an example for how to get the player object
-    // ËµÃ÷Ò»ÏÂ×÷ÎªµÚ¶ş¸ö²ÎÊı´«µİ¸øaddEventListenerWithSceneGraphPriority(eventListener, _player)µÄ_player¶ÔÏó±»·ÃÎÊµÄ·½Ê½¡£
+    // è¯´æ˜ä¸€ä¸‹ä½œä¸ºç¬¬äºŒä¸ªå‚æ•°ä¼ é€’ç»™addEventListenerWithSceneGraphPriority(eventListener, _player)çš„_playerå¯¹è±¡è¢«è®¿é—®çš„æ–¹å¼ã€‚
     // auto node = unused_event->getcurrentTarget();
 
-    // 2.»ñÈ¡´¥ÃşµãµÄ×ø±ê£¬²¢¼ÆËãÕâ¸öµãÏà¶ÔÓÚ_playerµÄÆ«ÒÆÁ¿¡£
+    // 2.è·å–è§¦æ‘¸ç‚¹çš„åæ ‡ï¼Œå¹¶è®¡ç®—è¿™ä¸ªç‚¹ç›¸å¯¹äº_playerçš„åç§»é‡ã€‚
     Vec2 touchLocation = touch->getLocation();
     Vec2 offset = touchLocation - hero_player->getPosition();
 
-    // 3.ÔÚÍæ¼ÒËùÔÚµÄÎ»ÖÃ´´½¨Ò»¸ö×Óµ¯£¬½«ÆäÌí¼Óµ½³¡¾°ÖĞ¡£
+    // 3.åœ¨ç©å®¶æ‰€åœ¨çš„ä½ç½®åˆ›å»ºä¸€ä¸ªå­å¼¹ï¼Œå°†å…¶æ·»åŠ åˆ°åœºæ™¯ä¸­ã€‚
     auto projectile = Sprite::create("revolver_projectile.png");
     projectile->setPosition(weapon_player->getPosition());
     this->addChild(projectile);
 
-    // 4.½«Æ«ÒÆÁ¿×ª»¯Îªµ¥Î»ÏòÁ¿£¬¼´³¤¶ÈÎª1µÄÏòÁ¿¡£
+    // 4.å°†åç§»é‡è½¬åŒ–ä¸ºå•ä½å‘é‡ï¼Œå³é•¿åº¦ä¸º1çš„å‘é‡ã€‚
     offset.normalize();
-    // ½«Æä³ËÒÔ1000£¬Äã¾Í»ñµÃÁËÒ»¸öÖ¸ÏòÓÃ»§´¥ÆÁ·½ÏòµÄ³¤¶ÈÎª1000µÄÏòÁ¿¡£ÎªÊ²Ã´ÊÇ1000ÄØ£¿ÒòÎª³¤¶ÈÓ¦µ±×ãÒÔ³¬¹ıµ±Ç°·Ö±æÂÊÏÂÆÁÄ»µÄ±ß½ç¡£
+    // å°†å…¶ä¹˜ä»¥1000ï¼Œä½ å°±è·å¾—äº†ä¸€ä¸ªæŒ‡å‘ç”¨æˆ·è§¦å±æ–¹å‘çš„é•¿åº¦ä¸º1000çš„å‘é‡ã€‚ä¸ºä»€ä¹ˆæ˜¯1000å‘¢ï¼Ÿå› ä¸ºé•¿åº¦åº”å½“è¶³ä»¥è¶…è¿‡å½“å‰åˆ†è¾¨ç‡ä¸‹å±å¹•çš„è¾¹ç•Œã€‚
     auto shootAmount = offset * 1000;
-    // ½«´ËÏòÁ¿Ìí¼Óµ½×Óµ¯µÄÎ»ÖÃÉÏÈ¥£¬ÕâÑùÄã¾ÍÓĞÁËÒ»¸öÄ¿±êÎ»ÖÃ¡£
+    // å°†æ­¤å‘é‡æ·»åŠ åˆ°å­å¼¹çš„ä½ç½®ä¸Šå»ï¼Œè¿™æ ·ä½ å°±æœ‰äº†ä¸€ä¸ªç›®æ ‡ä½ç½®ã€‚
     auto realDest = shootAmount + projectile->getPosition();
 
-    // 5.´´½¨Ò»¸ö¶¯×÷£¬½«×Óµ¯ÔÚ2ÃëÄÚÒÆ¶¯µ½Ä¿±êÎ»ÖÃ£¬È»ºó½«Ëü´Ó³¡¾°ÖĞÒÆ³ı¡£
+    // 5.åˆ›å»ºä¸€ä¸ªåŠ¨ä½œï¼Œå°†å­å¼¹åœ¨2ç§’å†…ç§»åŠ¨åˆ°ç›®æ ‡ä½ç½®ï¼Œç„¶åå°†å®ƒä»åœºæ™¯ä¸­ç§»é™¤ã€‚
     auto actionMove = MoveTo::create(1.0f, realDest);
     auto actionRemove = RemoveSelf::create();
     projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+
+    //å®ç°ä¸¤ç§æ­¦å™¨çš„è½¬æ¢
     if (weapon_player->isVisible())
     {
         weapon_player->attack();
@@ -261,5 +263,7 @@ bool HelloWorld::onTouchBegan(Touch* touch, Event* unused_event) {
         sword_bonus->attack();
         hero_player->setEnergy(0);
     }
+    //
+
     return true;
 }
