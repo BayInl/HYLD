@@ -41,12 +41,12 @@ public:
     //Berserker* hero_player = Berserker::create();
 
     //½¨Á¢ÎäÆ÷ÀàÊµÀı
-    Weapons* sword_bonus = hero_player->bindWeapon(1);
-    Weapons* weapon_player = hero_player->bindWeapon(0);
-    //SwordBonus* sword_bonus = SwordBonus::create();
+    Weapons* sword_bonus = SwordBonus::create();
+    Weapons* weapon_player = hero_player->bindWeapon();
 
     //¼üÅÌ¼àÌı£¬´¥Åö¼à²â
     void onKeyPressedKnight(EventKeyboard::KeyCode keyCode, Event* event);
+    void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
     bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* unused_event);
 
     // a selector callback

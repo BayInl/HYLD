@@ -88,7 +88,7 @@ Knight::Knight()
     log("Trying to create Knight");
     //将帧动画加入角色显示------------------------------------
     auto sfc = SpriteFrameCache::getInstance();
-    sfc->addSpriteFramesWithFile("KnightWalk.plist");
+    sfc->addSpriteFramesWithFile("Heroes/KnightWalk.plist");
     frames = getAnimation("knight_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
     bindSprite(sprite);
@@ -105,21 +105,9 @@ bool Knight::init()
     return true;
 }
 
-Weapons* Knight::bindWeapon(int weapontag)
+Weapons* Knight::bindWeapon()
 {
-    if(weapontag==0)
-    {
         return sword;
-    }
-    else
-    {
-        return sword_bonus;
-    }
-}
-
-bool Knight::isBonus()
-{
-    return bonusstatus;
 }
 
 bool Knight::SuperSkill()
@@ -135,7 +123,7 @@ Scientist::Scientist()
     log("Trying to create Scientist");
     //将帧动画加入角色显示------------------------------------
     auto sfc = SpriteFrameCache::getInstance();
-    sfc->addSpriteFramesWithFile("ScientistWalk.plist");
+    sfc->addSpriteFramesWithFile("Heroes/ScientistWalk.plist");
     frames = getAnimation("scientist_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
     sprite->setFlippedX(true);
@@ -166,7 +154,7 @@ Wizard::Wizard()
     log("Trying to create Wizard");
     //将帧动画加入角色显示------------------------------------
     auto sfc = SpriteFrameCache::getInstance();
-    sfc->addSpriteFramesWithFile("WizardWalk.plist");
+    sfc->addSpriteFramesWithFile("Heroes/WizardWalk.plist");
     frames = getAnimation("wizard_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
     bindSprite(sprite);
@@ -195,7 +183,7 @@ Berserker::Berserker()
     log("Trying to create Berserker");
     //将帧动画加入角色显示------------------------------------
     auto sfc = SpriteFrameCache::getInstance();
-    sfc->addSpriteFramesWithFile("BerserkerWalk.plist");
+    sfc->addSpriteFramesWithFile("Heroes/BerserkerWalk.plist");
     frames = getAnimation("fighter_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
     bindSprite(sprite);

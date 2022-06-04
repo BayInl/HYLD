@@ -36,13 +36,12 @@ Sword::Sword()
 {
 	log("Trying to building Sword");
 	auto sfc = SpriteFrameCache::getInstance();
-	sfc->addSpriteFramesWithFile("Sword.plist");
+	sfc->addSpriteFramesWithFile("Weapons/Sword.plist");
 	frames = getAnimation("sword%d.png", 5);
 	itemsprite = Sprite::createWithSpriteFrame(frames.front());
 	bindSprite(itemsprite);
 	SetDamage(5);
-	//bindSprite(SwordSprite);
-	if (SwordSprite == nullptr || itemsprite == nullptr)
+	if (itemsprite == nullptr)
 	{
 		log("Failed to create Sword sprite.");
 	}
@@ -70,13 +69,12 @@ SwordBonus::SwordBonus()
 {
 	log("Trying to building SB");
 	auto sfc = SpriteFrameCache::getInstance();
-	sfc->addSpriteFramesWithFile("SwordBonus.plist");
+	sfc->addSpriteFramesWithFile("Weapons/SwordBonus.plist");
 	frames = getAnimation("sword_bonus%d.png", 4);
 	itemsprite = Sprite::createWithSpriteFrame(frames.front());
 	bindSprite(itemsprite);
 	SetDamage(15);
-	//bindSprite(SBSprite);
-	if (SBSprite == nullptr || itemsprite == nullptr)
+	if (itemsprite == nullptr)
 	{
 		log("Failed to create SwordBonus sprite.");
 	}

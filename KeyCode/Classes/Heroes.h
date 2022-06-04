@@ -52,14 +52,11 @@ public:
     Knight();
     bool init()override;
     CREATE_FUNC(Knight);
-    Weapons* bindWeapon(int); //∞Û∂®Œ‰∆˜
+    Weapons* bindWeapon(); //∞Û∂®Œ‰∆˜
     bool SuperSkill();
-    bool isBonus();
 protected:
-    SwordBonus* sword_bonus = SwordBonus::create(); //∆’π•Œ‰∆˜
-    Sword* sword = Sword::create();     //¥Û’–Œ‰∆˜
-    Sprite* KnightSprite = Sprite::create("knight.png");
-    bool bonusstatus = false;
+    Sword* sword = Sword::create(); //Œ‰∆˜
+    Sprite* KnightSprite = Sprite::create("Heroes/knight.png");
 };
 //-------------------------------------------------------------------------------------------------------------
 
@@ -72,7 +69,7 @@ public:
     CREATE_FUNC(Scientist);
     bool SuperSkill();
 protected:
-    Sprite* ScientistSprite = Sprite::create("scientist.png");
+    Sprite* ScientistSprite = Sprite::create("Heroes/scientist.png");
 };
 //-------------------------------------------------------------------------------------------------------------
 
@@ -85,7 +82,7 @@ public:
     CREATE_FUNC(Wizard);
     bool SuperSkill();
 protected:
-    Sprite* WizardSprite = Sprite::create("wizard.png");
+    Sprite* WizardSprite = Sprite::create("Heroes/wizard.png");
 };
 //-------------------------------------------------------------------------------------------------------------
 
@@ -98,7 +95,7 @@ public:
     CREATE_FUNC(Berserker);
     bool SuperSkill();
 protected:
-    Sprite* BerserkerSprite = Sprite::create("berserker.png");
+    Sprite* BerserkerSprite = Sprite::create("Heroes/berserker.png");
 };
 //-------------------------------------------------------------------------------------------------------------
 

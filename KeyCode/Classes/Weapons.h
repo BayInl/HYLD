@@ -8,6 +8,7 @@ using namespace cocos2d;
 
 class Weapons:public Item
 {
+	friend class Hero;
 protected:
 	int damage = 0;//…À∫¶
 public:
@@ -25,8 +26,6 @@ public:
 	bool init()override;
 	CREATE_FUNC(Sword);
 	void attack();
-protected:
-	Sprite* SwordSprite = Sprite::create("sword.png");
 };
 
 class SwordBonus:public Weapons
@@ -36,8 +35,6 @@ public:
 	bool init()override;
 	CREATE_FUNC(SwordBonus);
 	void attack();
-protected:
-	Sprite* SBSprite = Sprite::create("sword_bonus.png");
 };
 
 #endif
