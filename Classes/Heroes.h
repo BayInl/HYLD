@@ -4,15 +4,14 @@
 #include "cocos2d.h"
 #include "Weapons.h"
 
-
 #define ENERGYMAX_KNIGHT 10
-#define ENERGYMAX_BERSERKER 8
-#define ENERGYMAX_WIZARD 12
-#define ENERGYMAX_SCIENTIST 16
-#define HEALTH_KNIGHT 35
-#define HEALTH_BERSERKER 40
-#define HEALTH_WIZARD 20
-#define HEALTH_SCIENTIST 30
+#define ENERGYMAX_BERSERKER 6
+#define ENERGYMAX_WIZARD 16
+#define ENERGYMAX_SCIENTIST 12
+#define HEALTH_KNIGHT 70
+#define HEALTH_BERSERKER 90
+#define HEALTH_WIZARD 50
+#define HEALTH_SCIENTIST 60
 
 using namespace cocos2d;
 
@@ -33,9 +32,9 @@ public:
     int getHealth();//获得角色的生命值
     void setHealth(int);//设置角色的生命值
     void setHealthPlus(int);//给角色的生命值增减
-    void setDirectLeft();
+    void setDirectLeft();//设置朝向
     void setDirectRight();
-    bool isDirectRight();
+    bool isDirectRight();//检查朝向
     Sprite* getSprite();//获取精灵对象
     Vector<SpriteFrame*> Hero::getAnimation(const char* format, int count); //获取精灵的动画
     void bindSprite(Sprite* sprite);//绑定对象
@@ -67,8 +66,10 @@ public:
     Scientist();
     bool init()override;
     CREATE_FUNC(Scientist);
+    Weapons* bindWeapon(); //绑定武器
     bool SuperSkill();
 protected:
+    Revolver* revolver = Revolver::create(); //武器
     Sprite* ScientistSprite = Sprite::create("Heroes/scientist.png");
 };
 //-------------------------------------------------------------------------------------------------------------
@@ -80,8 +81,10 @@ public:
     Wizard();
     bool init()override;
     CREATE_FUNC(Wizard);
+    Weapons* bindWeapon(); //绑定武器
     bool SuperSkill();
 protected:
+    Wand* wand = Wand::create(); //武器
     Sprite* WizardSprite = Sprite::create("Heroes/wizard.png");
 };
 //-------------------------------------------------------------------------------------------------------------
@@ -93,8 +96,10 @@ public:
     Berserker();
     bool init()override;
     CREATE_FUNC(Berserker);
+    Weapons* bindWeapon(); //绑定武器
     bool SuperSkill();
 protected:
+    Hammer* hammer = Hammer::create(); //武器
     Sprite* BerserkerSprite = Sprite::create("Heroes/berserker.png");
 };
 //-------------------------------------------------------------------------------------------------------------

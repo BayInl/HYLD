@@ -1,19 +1,31 @@
 #include "Weapons.h"
 
 //武器基类定义-----------------------------------------------------
-void Weapons::SetDamage(int damage_)
+void Weapons::setDamage(int damage_)
 {
 	damage = damage_;
 }
 
-int Weapons::GetDamage()
+int Weapons::getDamage()
 {
 	return damage;
 }
 
-Vec2 Weapons::GetPosition()
+void Weapons::setDirectLeft()
 {
-	return itemsprite->getPosition();
+	itemsprite->setScaleX(-1.0f);
+	rightdirect = false;
+}
+
+void Weapons::setDirectRight()
+{
+	itemsprite->setScaleX(1.0f);
+	rightdirect = true;
+}
+
+bool Weapons::isDirectRight()
+{
+	return rightdirect;
 }
 
 Vector<SpriteFrame*> Weapons::getAnimation(const char* format, int count)
@@ -30,6 +42,111 @@ Vector<SpriteFrame*> Weapons::getAnimation(const char* format, int count)
 }
 //----------------------------------------------------------------------------------
 
+//Wand定义----------------------------------------------------------------------
+Wand::Wand()
+{
+	log("Trying to building wand");
+	auto sfc = SpriteFrameCache::getInstance();
+	sfc->addSpriteFramesWithFile("Weapons/Wand.plist");
+	frames = getAnimation("wand%d.png", 6);
+	itemsprite = Sprite::createWithSpriteFrame(frames.front());
+	bindSprite(itemsprite);
+	if (itemsprite == nullptr)
+	{
+		log("Failed to create wand sprite.");
+	}
+}
+
+bool Wand::init()
+{
+	return true;
+}
+
+void Wand::attack()
+{
+	auto animation = Animation::createWithSpriteFrames(frames, 0.4f / 8);
+	auto animate = Animate::create(animation);
+	auto sequence = Sequence::create(animate, nullptr);
+	itemsprite->runAction(sequence);
+}
+
+//-----------------------------------------------------------------------------------
+
+
+//Hammer定义----------------------------------------------------------------------
+Hammer::Hammer()
+{
+	log("Trying to building hammer");
+	auto sfc = SpriteFrameCache::getInstance();
+	sfc->addSpriteFramesWithFile("Weapons/Hammer.plist");
+	frames = getAnimation("hammer%d.png", 4);
+	itemsprite = Sprite::createWithSpriteFrame(frames.front());
+	itemsprite->setScale(0.7f);
+	bindSprite(itemsprite);
+	setDamage(5);
+	if (itemsprite == nullptr)
+	{
+		log("Failed to create hammer sprite.");
+	}
+}
+
+bool Hammer::init()
+{
+	return true;
+}
+
+void Hammer::attack()
+{
+	auto animation = Animation::createWithSpriteFrames(frames, 0.7f / 8);
+	auto animate = Animate::create(animation);
+	auto sequence = Sequence::create(animate, nullptr);
+	itemsprite->runAction(sequence);
+}
+
+void Hammer::setDirectRight()
+{
+	itemsprite->setScaleX(0.7f);
+	rightdirect = true;
+}
+
+void Hammer::setDirectLeft()
+{
+	itemsprite->setScaleX(-0.7f);
+	rightdirect = false;
+}
+
+//-----------------------------------------------------------------------------------
+
+
+//Revolver定义----------------------------------------------------------------------
+Revolver::Revolver()
+{
+	log("Trying to building Gun");
+	auto sfc = SpriteFrameCache::getInstance();
+	sfc->addSpriteFramesWithFile("Weapons/Revolver.plist");
+	frames = getAnimation("revolver%d.png", 4);
+	itemsprite = Sprite::createWithSpriteFrame(frames.front());
+	bindSprite(itemsprite);
+	if (itemsprite == nullptr)
+	{
+		log("Failed to create Gun sprite.");
+	}
+}
+
+bool Revolver::init()
+{
+	return true;
+}
+
+void Revolver::attack()
+{
+	auto animation = Animation::createWithSpriteFrames(frames, 0.3f / 8);
+	auto animate = Animate::create(animation);
+	auto sequence = Sequence::create(animate, nullptr);
+	itemsprite->runAction(sequence);
+}
+
+//-----------------------------------------------------------------------------------
 
 //Sword定义----------------------------------------------------------------------
 Sword::Sword()
@@ -40,7 +157,7 @@ Sword::Sword()
 	frames = getAnimation("sword%d.png", 5);
 	itemsprite = Sprite::createWithSpriteFrame(frames.front());
 	bindSprite(itemsprite);
-	SetDamage(5);
+	setDamage(7);
 	if (itemsprite == nullptr)
 	{
 		log("Failed to create Sword sprite.");
@@ -73,7 +190,7 @@ SwordBonus::SwordBonus()
 	frames = getAnimation("sword_bonus%d.png", 4);
 	itemsprite = Sprite::createWithSpriteFrame(frames.front());
 	bindSprite(itemsprite);
-	SetDamage(15);
+	setDamage(30);
 	if (itemsprite == nullptr)
 	{
 		log("Failed to create SwordBonus sprite.");

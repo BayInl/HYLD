@@ -1,34 +1,5 @@
-/****************************************************************************
- Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
- http://www.cocos2d-x.org
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- ****************************************************************************/
-
 #include "HelloWorldScene.h"
 
-//
-#include "Heroes.h"
-#include "AudioEngine.h"
-#include <stdio.h>
-//
 
 USING_NS_CC;
 using namespace cocos2d;
@@ -90,7 +61,7 @@ bool HelloWorld::init()
     
     //增加一个角色的实例
     this->addChild(hero_player);
-    hero_player->setPosition(Vec2(100, 200));
+    hero_player->setPosition(Vec2(512, 384));
     hero_player->Animater();//让它动起来
 
     //增加骑士的大招武器
@@ -100,8 +71,12 @@ bool HelloWorld::init()
         sword_bonus->setPosition(hero_player->getPosition() + Vec2(100, 50));
         sword_bonus->setVisible(false);
     }
+
+    //增加武器
     this->addChild(weapon_player);
     weapon_player->setPosition(hero_player->getPosition() + Vec2(70, 30));
+    if (typeid(hero_player) == typeid(Berserker*))
+        weapon_player->setPosition(hero_player->getPosition() + Vec2(50, -10));
 
    // 定义触摸事件的监听器
    auto mouseListener = EventListenerTouchOneByOne::create();
@@ -145,8 +120,8 @@ void HelloWorld::onKeyPressedKnight(EventKeyboard::KeyCode keyCode, Event* event
         auto moveBy = MoveBy::create(0.5f, Vec2(20, 0));
         auto action = Sequence::create(moveBy, nullptr);
         hero_player->setDirectRight();
-        weapon_player->setScaleX(1.0f);
-        sword_bonus->setScaleX(1.0f);
+        weapon_player->setDirectRight();
+        sword_bonus->setDirectRight();
         weapon_player->setPosition(hero_player->getPosition() + Vec2(70, 30));
         sword_bonus->setPosition(hero_player->getPosition() + Vec2(100, 50));
         hero_player->runAction(action);
@@ -159,8 +134,8 @@ void HelloWorld::onKeyPressedKnight(EventKeyboard::KeyCode keyCode, Event* event
         auto moveBy = MoveBy::create(0.5f, Vec2(-20, 0));
         auto action = Sequence::create(moveBy ,nullptr);
         hero_player->setDirectLeft();
-        weapon_player->setScaleX(-1.0f);
-        sword_bonus->setScaleX(-1.0f);
+        weapon_player->setDirectLeft();
+        sword_bonus->setDirectLeft();
         weapon_player->setPosition(hero_player->getPosition()+Vec2(-70,30));
         sword_bonus->setPosition(hero_player->getPosition() + Vec2(-100, 50));
         hero_player->runAction(action);
@@ -196,7 +171,7 @@ void HelloWorld::onKeyPressedKnight(EventKeyboard::KeyCode keyCode, Event* event
         else;
         break;
     }
-    case EventKeyboard::KeyCode::KEY_SHIFT:
+    case EventKeyboard::KeyCode::KEY_SHIFT: //冲刺
     {
         if(hero_player->isDirectRight())
         {
@@ -232,8 +207,10 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
         auto moveBy = MoveBy::create(0.5f, Vec2(20, 0));
         auto action = Sequence::create(moveBy, nullptr);
         hero_player->setDirectRight();
-        weapon_player->setScaleX(1.0f);
+        weapon_player->setDirectRight();
         weapon_player->setPosition(hero_player->getPosition() + Vec2(70, 30));
+        if (typeid(hero_player) == typeid(Berserker*))
+            weapon_player->setPosition(hero_player->getPosition() + Vec2(50, -10));
         hero_player->runAction(action);
         weapon_player->runAction(action->clone());
         break;
@@ -243,8 +220,10 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
         auto moveBy = MoveBy::create(0.5f, Vec2(-20, 0));
         auto action = Sequence::create(moveBy, nullptr);
         hero_player->setDirectLeft();
-        weapon_player->setScaleX(-1.0f);
+        weapon_player->setDirectLeft();
         weapon_player->setPosition(hero_player->getPosition() + Vec2(-70, 30));
+        if (typeid(hero_player) == typeid(Berserker*))
+            weapon_player->setPosition(hero_player->getPosition() + Vec2(-50, -10));
         hero_player->runAction(action);
         weapon_player->runAction(action->clone());
         break;
@@ -267,14 +246,30 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
     }
     case EventKeyboard::KeyCode::KEY_Q:  //大招
     {
-        if (hero_player->getEnergy() >= ENERGYMAX_KNIGHT)
+        if (typeid(hero_player) == typeid(Berserker*))
         {
-            hero_player->SuperSkill();
+            if (hero_player->getEnergy() >= ENERGYMAX_BERSERKER)
+            {
+                hero_player->SuperSkill();
+            }
         }
-        else;
+        else if (typeid(hero_player) == typeid(Scientist*))
+        {
+            if (hero_player->getEnergy() >= ENERGYMAX_SCIENTIST)
+            {
+                hero_player->SuperSkill();
+            }
+        }
+        else if (typeid(hero_player) == typeid(Wizard*))
+        {
+            if (hero_player->getEnergy() >= ENERGYMAX_WIZARD)
+            {
+                hero_player->SuperSkill();
+            }
+        }
         break;
     }
-    case EventKeyboard::KeyCode::KEY_SHIFT:
+    case EventKeyboard::KeyCode::KEY_SHIFT: //冲刺
     {
         if (hero_player->isDirectRight())
         {
@@ -299,39 +294,81 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 
 bool HelloWorld::onTouchBegan(Touch* touch, Event* unused_event)
 {
-    if (typeid(hero_player) == typeid(Berserker*))
+    if (typeid(hero_player) == typeid(Berserker*)) //玩家操控狂战士时，执行这个
     {
-
+        //对于hammer，凡是正在执行attack()的，均需要参与碰撞检测
+        weapon_player->attack();
+        hero_player->setEnergyOnePlus();
     }
-    if (typeid(hero_player) == typeid(Wizard*))
+    if (typeid(hero_player) == typeid(Wizard*)) //玩家操控法师时，执行这个
     {
-
-    }
-    if(typeid(hero_player)==typeid(Scientist*))
-    {
-        // 获取触摸点的坐标，并计算这个点相对于_player的偏移量。
+        // 获取触摸点的坐标，计算偏移量
         Vec2 touchLocation = touch->getLocation();
-        Vec2 offset = touchLocation - hero_player->getPosition();
-
-        // 在玩家所在的位置创建一个子弹，将其添加到场景中。
-        auto projectile = Sprite::create("Weapons/revolver_projectile.png");
-        projectile->setPosition(weapon_player->getPosition());
+        Vec2 offset = touchLocation - weapon_player->getPosition();
+        if (abs(offset.getAngle() / 3.14f * 180) > 80 && weapon_player->isDirectRight())
+            return true;
+        if (abs(offset.getAngle() / 3.14f * 180) < 100 && !(weapon_player->isDirectRight()))
+            return true;
+        // 创建攻击物
+        auto projectile = Light::create();
+        if (weapon_player->isDirectRight())
+        {
+            projectile->setPosition(weapon_player->getPosition() - Vec2(3, 30));
+        }
+        else
+        {
+            projectile->setPosition(weapon_player->getPosition() - Vec2(-3, 30));
+        }
+        projectile->setRotation(-offset.getAngle() / 3.14f * 180);
         this->addChild(projectile);
-
-        // 将偏移量转化为单位向量，即长度为1的向量。
+        //偏移量转化为单位向量
         offset.normalize();
-        // 将其乘以1000，你就获得了一个指向用户触屏方向的长度为1000的向量(长度应当足以超过当前分辨率下屏幕的边界)
-        auto shootAmount = offset * 1000;
-        // 将此向量添加到子弹的位置上去，这样你就有了一个目标位置。
+        //获得了一个指向触屏方向的长度为567的向量
+        auto shootAmount = offset * 567;
+        //目标位置
         auto realDest = shootAmount + projectile->getPosition();
-
-        // 创建一个动作，将子弹在1秒内移动到目标位置，然后将它从场景中移除。
-        auto actionMove = MoveTo::create(1.0f, realDest);
+        //将攻击物移动到目标位置，然后将它从场景中移除
+        auto actionMove = MoveTo::create(1.5f, realDest);
         auto actionRemove = RemoveSelf::create();
         projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
-
-        //手枪作出开枪的动作，但手枪不参与碰撞检测
+        //武器攻击但不参与碰撞检测
         weapon_player->attack();
+        hero_player->setEnergyOnePlus();
+    }
+    if(typeid(hero_player)==typeid(Scientist*)) //玩家操控科学家时，执行这个
+    {
+        // 获取触摸点的坐标，计算偏移量
+        Vec2 touchLocation = touch->getLocation();
+        Vec2 offset = touchLocation - weapon_player->getPosition();
+        if (abs(offset.getAngle() / 3.14f * 180) > 70&&weapon_player->isDirectRight())
+            return true;
+        if (abs(offset.getAngle() / 3.14f * 180) < 110 &&!(weapon_player->isDirectRight()))
+            return true;
+        // 创建攻击物
+        auto projectile = Bullet::create();
+        if(weapon_player->isDirectRight())
+        {
+            projectile->setPosition(weapon_player->getPosition() - Vec2(3, 30));
+        }
+        else
+        {
+            projectile->setPosition(weapon_player->getPosition() - Vec2(-3, 30));
+        }
+        projectile->setRotation(-offset.getAngle()/3.14f*180);
+        this->addChild(projectile);
+        //偏移量转化为单位向量
+        offset.normalize();
+        //获得了一个指向触屏方向的长度为432的向量
+        auto shootAmount = offset * 432;
+        //目标位置
+        auto realDest = shootAmount + projectile->getPosition();
+        //将攻击物移动到目标位置，然后将它从场景中移除
+        auto actionMove = MoveTo::create(0.36f, realDest);
+        auto actionRemove = RemoveSelf::create();
+        projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+        //武器攻击但不参与碰撞检测
+        weapon_player->attack();
+        hero_player->setEnergyOnePlus();
     }
     if (typeid(hero_player) == typeid(Knight*)) //玩家操控骑士时，执行这个
     {
@@ -351,7 +388,7 @@ bool HelloWorld::onTouchBegan(Touch* touch, Event* unused_event)
         else
         {
             sword_bonus->attack();
-            hero_player->setEnergy(0);
+            hero_player->SuperSkill();
         }
     }
     return true;

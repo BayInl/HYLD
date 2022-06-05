@@ -112,6 +112,7 @@ Weapons* Knight::bindWeapon()
 
 bool Knight::SuperSkill()
 {
+    setEnergy(0);
     return true;
 }
 //--------------------------------------------------------------------------------------------------
@@ -141,8 +142,54 @@ bool Scientist::init()
     return true;
 }
 
+Weapons* Scientist::bindWeapon()
+{
+    return revolver;
+}
+
 bool Scientist::SuperSkill()
 {
+    Vec2 offset[8] = { Vec2(1, 0), Vec2(1, 1) ,Vec2(1, -1),Vec2(-1, 0) ,Vec2(-1, 1) ,Vec2(-1, -1),Vec2(0, 1),Vec2(0, -1) };
+    Vec2 shootAmount[8];
+    Vec2 realDest[8];
+    // 创建攻击物
+    BulletBonus* projectiles[8];
+    for(int i=0;i<8;i++)
+        projectiles[i] = BulletBonus::create();
+    if (isDirectRight())
+    {
+        for (int i = 0; i < 8; i++)
+            projectiles[i]->setPosition(sprite->getPosition() );
+    }
+    else
+    {
+        for (int i = 0; i < 8; i++)
+            projectiles[i]->setPosition(sprite->getPosition() );
+    }
+    projectiles[1]->setRotation(-45);
+    projectiles[2]->setRotation(45);
+    projectiles[3]->setRotation(-180);
+    projectiles[4]->setRotation(-135);
+    projectiles[5]->setRotation(135);
+    projectiles[6]->setRotation(-90);
+    projectiles[7]->setRotation(90);
+    for (int i = 0; i < 8; i++)
+        this->addChild(projectiles[i]);
+    //获得了一个指向触屏方向的长度为654的向量
+    for(int i=0;i<8;i++)
+        shootAmount[i] = offset[i] * 654;
+    //目标位置
+    for (int i = 0; i < 8; i++)
+        realDest[i] = shootAmount[i] + projectiles[i]->getPosition();
+    //将攻击物移动到目标位置，然后将它从场景中移除
+    MoveTo* actionMove[8];
+    for (int i = 0; i < 8; i++)
+        actionMove[i] = MoveTo::create(0.4f, realDest[i]);
+    auto actionRemove = RemoveSelf::create();
+    for (int i = 0; i < 8; i++)
+        projectiles[i]->runAction(Sequence::create(actionMove[i], actionRemove, nullptr));
+    revolver->attack();
+    setEnergy(0);
     return true;
 }
 //--------------------------------------------------------------------------------------------------
@@ -171,8 +218,40 @@ bool Wizard::init()
     return true;
 }
 
+Weapons* Wizard::bindWeapon()
+{
+    return wand;
+}
+
 bool Wizard::SuperSkill()
 {
+    Vec2 offset = Vec2(1, 0);
+    if(isDirectRight())
+        offset = Vec2(1, 0);
+    else
+        offset = Vec2(-1, 0);
+    // 创建攻击物
+    auto projectile = LightBonus::create();
+    projectile->setScale(1.2f, 1.6f);
+    if (isDirectRight())
+    {
+        projectile->setPosition(sprite->getPosition() - Vec2(3, 30));
+    }
+    else
+    {
+        projectile->setPosition(sprite->getPosition() - Vec2(-3, 30));
+    }
+    this->addChild(projectile);
+    //获得了一个指向触屏方向的长度为2000的向量
+    auto shootAmount = offset * 2000;
+    //目标位置
+    auto realDest = shootAmount + projectile->getPosition();
+    //将攻击物移动到目标位置，然后将它从场景中移除
+    auto actionMove = MoveTo::create(12.5f, realDest);
+    auto actionRemove = RemoveSelf::create();
+    projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+    wand->attack();
+    setEnergy(0);
     return true;
 }
 //--------------------------------------------------------------------------------------------------
@@ -200,8 +279,14 @@ bool Berserker::init()
     return true;
 }
 
+Weapons* Berserker::bindWeapon()
+{
+    return hammer;
+}
+
 bool Berserker::SuperSkill()
 {
+    setEnergy(0);
     return true;
 }
 //--------------------------------------------------------------------------------------------------
