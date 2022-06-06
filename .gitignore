@@ -1,0 +1,8 @@
+cocos2d/
+proj.*/
+win32-build/
+
+# Resources/
+# Classes/
+# .cocos-project.json
+# CMakeLists.txt
