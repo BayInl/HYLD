@@ -2,6 +2,7 @@
 #define __ITEM_H__
 
 #include "cocos2d.h"
+#include "AudioEngine.h"
 
 using namespace cocos2d;
 
@@ -82,6 +83,64 @@ public:
 	bool init()override;
 	int getDamage();//获取攻击力
 	CREATE_FUNC(Glove);
+};
+//---------------------------------------------------------------------------------------------------------
+
+//生命箱类--------------------------------------------------------------------------------------------------
+class BoxHealth :public Item
+{
+protected:
+	int heal = 12;
+public:
+	BoxHealth();
+	bool init()override;
+	int getHeal();//获取治疗量
+	CREATE_FUNC(BoxHealth);
+};
+//---------------------------------------------------------------------------------------------------------
+
+//能量箱类--------------------------------------------------------------------------------------------------
+class BoxCharge :public Item
+{
+protected:
+	int charge = 4;
+public:
+	BoxCharge();
+	bool init()override;
+	int getCharge();//获取能量值
+	CREATE_FUNC(BoxCharge);
+};
+//---------------------------------------------------------------------------------------------------------
+
+//陷阱箱类--------------------------------------------------------------------------------------------------
+class BoxHell :public Item
+{
+protected:
+	int damage = 8;
+public:
+	BoxHell();
+	bool init()override;
+	int getDamage();//获取攻击力
+	CREATE_FUNC(BoxHell);
+};
+//---------------------------------------------------------------------------------------------------------
+
+//问号箱类--------------------------------------------------------------------------------------------------
+class BoxWhat :public Item
+{
+protected:
+	int damage = 16;
+	int heal = 20;
+	int charge = 8;
+	int judge=0; //判断这个箱子里面是恢复（回复生命和能量）还是陷阱，0是陷阱，1是恢复，默认是0
+public:
+	BoxWhat();
+	bool init()override;
+	int getDamage();//获取攻击力
+	int getHeal();//获取治疗量
+	int getCharge();//获取能量值
+	int isWhat(); //随机抽取0和1赋给judge并返回
+	CREATE_FUNC(BoxWhat);
 };
 //---------------------------------------------------------------------------------------------------------
 

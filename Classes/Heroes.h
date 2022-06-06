@@ -30,8 +30,8 @@ public:
     void setEnergy(int);//设置角色的能量值
     void setEnergyOnePlus();//给角色的能量值加一
     int getHealth();//获得角色的生命值
-    void setHealth(int);//设置角色的生命值
-    void setHealthPlus(int);//给角色的生命值增减
+    virtual void setHealth()=0;//设置角色的生命值
+    virtual void setHealthPlus(int)=0;//给角色的生命值增减
     void setDirectLeft();//设置朝向
     void setDirectRight();
     bool isDirectRight();//检查朝向
@@ -52,6 +52,8 @@ public:
     bool init()override;
     CREATE_FUNC(Knight);
     Weapons* bindWeapon(); //绑定武器
+    void setHealth();
+    void setHealthPlus(int);
     bool SuperSkill();
 protected:
     Sword* sword = Sword::create(); //武器
@@ -67,6 +69,8 @@ public:
     bool init()override;
     CREATE_FUNC(Scientist);
     Weapons* bindWeapon(); //绑定武器
+    void setHealth();
+    void setHealthPlus(int);
     bool SuperSkill();
 protected:
     Revolver* revolver = Revolver::create(); //武器
@@ -82,6 +86,8 @@ public:
     bool init()override;
     CREATE_FUNC(Wizard);
     Weapons* bindWeapon(); //绑定武器
+    void setHealth();
+    void setHealthPlus(int);
     bool SuperSkill();
 protected:
     Wand* wand = Wand::create(); //武器
@@ -97,6 +103,8 @@ public:
     bool init()override;
     CREATE_FUNC(Berserker);
     Weapons* bindWeapon(); //绑定武器
+    void setHealth();
+    void setHealthPlus(int);
     bool SuperSkill();
 protected:
     Hammer* hammer = Hammer::create(); //武器

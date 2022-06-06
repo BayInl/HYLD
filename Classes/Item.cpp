@@ -1,4 +1,5 @@
 #include "Item.h"
+#include <time.h>
 
 //Item定义---------------------------------------------------------------------
 Sprite* Item::getSprite()
@@ -161,5 +162,114 @@ bool Glove::init()
 int Glove::getDamage()
 {
 	return damage;
+}
+//--------------------------------------------------------------------------------
+
+//BoxHealth定义---------------------------------------------------------------------
+BoxHealth::BoxHealth()
+{
+	log("Trying to building boxhealth");
+	itemsprite = Sprite::create("BasicItems/boxhealth.png");
+	bindSprite(itemsprite);
+	if (itemsprite == nullptr)
+	{
+		log("Failed to create boxhealth sprite.");
+	}
+}
+
+bool BoxHealth::init()
+{
+	return true;
+}
+
+int BoxHealth::getHeal()
+{
+	return heal;
+}
+//--------------------------------------------------------------------------------
+
+//BoxEnergy定义---------------------------------------------------------------------
+BoxCharge::BoxCharge()
+{
+	log("Trying to building BoxCharge");
+	itemsprite = Sprite::create("BasicItems/boxenergy.png");
+	bindSprite(itemsprite);
+	if (itemsprite == nullptr)
+	{
+		log("Failed to create BoxCharge sprite.");
+	}
+}
+
+bool BoxCharge::init()
+{
+	return true;
+}
+
+int BoxCharge::getCharge()
+{
+	return charge;
+}
+//--------------------------------------------------------------------------------
+
+//BoxHell定义---------------------------------------------------------------------
+BoxHell::BoxHell()
+{
+	log("Trying to building boxhell");
+	itemsprite = Sprite::create("BasicItems/boxhell.png");
+	bindSprite(itemsprite);
+	if (itemsprite == nullptr)
+	{
+		log("Failed to create boxhell sprite.");
+	}
+}
+
+bool BoxHell::init()
+{
+	return true;
+}
+
+int BoxHell::getDamage()
+{
+	return damage;
+}
+//--------------------------------------------------------------------------------
+
+//BoxWhat定义---------------------------------------------------------------------
+BoxWhat::BoxWhat()
+{
+	log("Trying to building boxwhat");
+	itemsprite = Sprite::create("BasicItems/boxwhat.png");
+	bindSprite(itemsprite);
+	if (itemsprite == nullptr)
+	{
+		log("Failed to create boxwhat sprite.");
+	}
+}
+
+bool BoxWhat::init()
+{
+	return true;
+}
+
+int BoxWhat::getDamage()
+{
+	return damage;
+}
+
+int BoxWhat::getHeal()
+{
+	return heal;
+}
+
+int BoxWhat::getCharge()
+{
+	return charge;
+}
+
+int BoxWhat::isWhat()
+{
+	srand(time(NULL));
+	judge = rand() % 2;
+	return judge;
 }
 //--------------------------------------------------------------------------------

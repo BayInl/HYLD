@@ -9,14 +9,12 @@ Scene* HelloWorld::createScene()
     return HelloWorld::create();
 }
 
-// Print useful error message instead of segfaulting when files are not there.
 static void problemLoading(const char* filename)
 {
     printf("Error while loading: %s\n", filename);
     printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
 
-// on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
     // 1. super init first
@@ -24,15 +22,12 @@ bool HelloWorld::init()
     {
         return false;
     }
-
     //预加载
     AudioEngine::preload("Sounds/goldenslaughterer.mp3");
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
     // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
@@ -59,11 +54,20 @@ bool HelloWorld::init()
 
     // 3. add your codes below...
     
+    //增加一些箱子的实例
+    this->addChild(box0);
+    box0->setPosition(Vec2(300, 200));
+    this->addChild(box1);
+    box1->setPosition(Vec2(500, 300));
+    this->addChild(box2);
+    box2->setPosition(Vec2(400, 700));
+    this->addChild(box3);
+    box3->setPosition(Vec2(700, 500));
+
     //增加一个角色的实例
     this->addChild(hero_player);
     hero_player->setPosition(Vec2(512, 384));
     hero_player->Animater();//让它动起来
-
     //增加骑士的大招武器
     if (typeid(hero_player) == typeid(Knight*))
     {
@@ -71,20 +75,17 @@ bool HelloWorld::init()
         sword_bonus->setPosition(hero_player->getPosition() + Vec2(100, 50));
         sword_bonus->setVisible(false);
     }
-
     //增加武器
     this->addChild(weapon_player);
     weapon_player->setPosition(hero_player->getPosition() + Vec2(70, 30));
     if (typeid(hero_player) == typeid(Berserker*))
         weapon_player->setPosition(hero_player->getPosition() + Vec2(50, -10));
-
-   // 定义触摸事件的监听器
+   // 触摸事件的监听器
    auto mouseListener = EventListenerTouchOneByOne::create();
-   // 定义回调函数onTouchBegan():手指第一次碰到屏幕时被调用
+   // 回调函数onTouchBegan():手指第一次碰到屏幕时被调用
    mouseListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
-   // 使用EventDispatcher来处理触摸和其他键盘事件
+   // 使用EventDispatcher处理触摸和其他键盘事件
    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, weapon_player);
-
    // 键盘事件监听
    auto keyListener = EventListenerKeyboard::create();
    if (typeid(hero_player) == typeid(Knight*))
@@ -94,7 +95,7 @@ bool HelloWorld::init()
    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyListener, this);
 
    //设置背景音乐
-   auto backgroundAudioID = AudioEngine::play2d("Sounds/goldenslaughterer.mp3", true);
+   auto backgroundAudioID = AudioEngine::play2d("Sounds/goldenslaughterer.mp3", true,0.2f);
    AudioEngine::resume(backgroundAudioID);
 
     return true;

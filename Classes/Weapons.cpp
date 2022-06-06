@@ -46,6 +46,7 @@ Vector<SpriteFrame*> Weapons::getAnimation(const char* format, int count)
 Wand::Wand()
 {
 	log("Trying to building wand");
+	AudioEngine::preload("Sounds/wizard_wand.mp3");
 	auto sfc = SpriteFrameCache::getInstance();
 	sfc->addSpriteFramesWithFile("Weapons/Wand.plist");
 	frames = getAnimation("wand%d.png", 6);
@@ -64,6 +65,8 @@ bool Wand::init()
 
 void Wand::attack()
 {
+	auto weapon_audio = AudioEngine::play2d("Sounds/wizard_wand.mp3", false,1.2f);
+	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.4f / 8);
 	auto animate = Animate::create(animation);
 	auto sequence = Sequence::create(animate, nullptr);
@@ -77,6 +80,7 @@ void Wand::attack()
 Hammer::Hammer()
 {
 	log("Trying to building hammer");
+	AudioEngine::preload("Sounds/berserker_hammer.mp3");
 	auto sfc = SpriteFrameCache::getInstance();
 	sfc->addSpriteFramesWithFile("Weapons/Hammer.plist");
 	frames = getAnimation("hammer%d.png", 4);
@@ -97,6 +101,8 @@ bool Hammer::init()
 
 void Hammer::attack()
 {
+	auto weapon_audio = AudioEngine::play2d("Sounds/berserker_hammer.mp3", false);
+	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.7f / 8);
 	auto animate = Animate::create(animation);
 	auto sequence = Sequence::create(animate, nullptr);
@@ -122,6 +128,7 @@ void Hammer::setDirectLeft()
 Revolver::Revolver()
 {
 	log("Trying to building Gun");
+	AudioEngine::preload("Sounds/scientist_revolver.mp3");
 	auto sfc = SpriteFrameCache::getInstance();
 	sfc->addSpriteFramesWithFile("Weapons/Revolver.plist");
 	frames = getAnimation("revolver%d.png", 4);
@@ -140,6 +147,8 @@ bool Revolver::init()
 
 void Revolver::attack()
 {
+	auto weapon_audio = AudioEngine::play2d("Sounds/scientist_revolver.mp3", false,0.3f);
+	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.3f / 8);
 	auto animate = Animate::create(animation);
 	auto sequence = Sequence::create(animate, nullptr);
@@ -152,6 +161,7 @@ void Revolver::attack()
 Sword::Sword()
 {
 	log("Trying to building Sword");
+	AudioEngine::preload("Sounds/knight_sword.mp3");
 	auto sfc = SpriteFrameCache::getInstance();
 	sfc->addSpriteFramesWithFile("Weapons/Sword.plist");
 	frames = getAnimation("sword%d.png", 5);
@@ -171,6 +181,8 @@ bool Sword::init()
 
 void Sword::attack()
 {
+	auto weapon_audio = AudioEngine::play2d("Sounds/knight_sword.mp3", false,1.2f);
+	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.4f / 8);
 	auto animate = Animate::create(animation);
 	auto delay = DelayTime::create(0.2f);
@@ -185,6 +197,7 @@ void Sword::attack()
 SwordBonus::SwordBonus()
 {
 	log("Trying to building SB");
+	AudioEngine::preload("Sounds/knight_superskill.mp3");
 	auto sfc = SpriteFrameCache::getInstance();
 	sfc->addSpriteFramesWithFile("Weapons/SwordBonus.plist");
 	frames = getAnimation("sword_bonus%d.png", 4);
@@ -204,6 +217,8 @@ bool SwordBonus::init()
 
 void SwordBonus::attack()
 {
+	auto weapon_audio = AudioEngine::play2d("Sounds/knight_superskill.mp3", false,1.3f);
+	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.5f / 8);
 	auto animate = Animate::create(animation);
 	auto delay = DelayTime::create(0.25f);

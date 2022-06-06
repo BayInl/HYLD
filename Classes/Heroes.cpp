@@ -22,16 +22,6 @@ int Hero::getHealth()
     return health;
 }
 
-void Hero::setHealth(int n)
-{
-    energy = n;
-}
-
-void Hero::setHealthPlus(int n)
-{
-    energy += n;
-}
-
 void Hero::setDirectLeft()
 {
     sprite->setScaleX(-1.0f);
@@ -91,6 +81,7 @@ Knight::Knight()
     sfc->addSpriteFramesWithFile("Heroes/KnightWalk.plist");
     frames = getAnimation("knight_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
+    setHealth();
     bindSprite(sprite);
     //------------------------------------------------------------
     health = HEALTH_KNIGHT;
@@ -108,6 +99,18 @@ bool Knight::init()
 Weapons* Knight::bindWeapon()
 {
         return sword;
+}
+
+void Knight::setHealth()
+{
+    health = HEALTH_KNIGHT;
+}
+
+void Knight::setHealthPlus(int n)
+{
+    health += n;
+    if (health >= HEALTH_KNIGHT)
+        health = HEALTH_KNIGHT;
 }
 
 bool Knight::SuperSkill()
@@ -128,6 +131,7 @@ Scientist::Scientist()
     frames = getAnimation("scientist_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
     sprite->setFlippedX(true);
+    setHealth();
     bindSprite(sprite); 
     //------------------------------------------------------------
     health = HEALTH_SCIENTIST;
@@ -145,6 +149,18 @@ bool Scientist::init()
 Weapons* Scientist::bindWeapon()
 {
     return revolver;
+}
+
+void Scientist::setHealth()
+{
+    health = HEALTH_SCIENTIST;
+}
+
+void Scientist::setHealthPlus(int n)
+{
+    health += n;
+    if (health >= HEALTH_SCIENTIST)
+        health = HEALTH_SCIENTIST;
 }
 
 bool Scientist::SuperSkill()
@@ -204,6 +220,7 @@ Wizard::Wizard()
     sfc->addSpriteFramesWithFile("Heroes/WizardWalk.plist");
     frames = getAnimation("wizard_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
+    setHealth();
     bindSprite(sprite);
     //------------------------------------------------------------
     health = HEALTH_WIZARD;
@@ -223,6 +240,18 @@ Weapons* Wizard::bindWeapon()
     return wand;
 }
 
+void Wizard::setHealth()
+{
+    health = HEALTH_WIZARD;
+}
+
+void Wizard::setHealthPlus(int n)
+{
+    health += n;
+    if (health >= HEALTH_WIZARD)
+        health = HEALTH_WIZARD;
+}
+
 bool Wizard::SuperSkill()
 {
     Vec2 offset = Vec2(1, 0);
@@ -232,7 +261,7 @@ bool Wizard::SuperSkill()
         offset = Vec2(-1, 0);
     // 创建攻击物
     auto projectile = LightBonus::create();
-    projectile->setScale(1.2f, 1.6f);
+    projectile->setScale(1.6f, 2.1f);
     if (isDirectRight())
     {
         projectile->setPosition(sprite->getPosition() - Vec2(3, 30));
@@ -242,8 +271,8 @@ bool Wizard::SuperSkill()
         projectile->setPosition(sprite->getPosition() - Vec2(-3, 30));
     }
     this->addChild(projectile);
-    //获得了一个指向触屏方向的长度为2000的向量
-    auto shootAmount = offset * 2000;
+    //获得了一个指向触屏方向的长度为2500的向量
+    auto shootAmount = offset * 2500;
     //目标位置
     auto realDest = shootAmount + projectile->getPosition();
     //将攻击物移动到目标位置，然后将它从场景中移除
@@ -251,6 +280,7 @@ bool Wizard::SuperSkill()
     auto actionRemove = RemoveSelf::create();
     projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
     wand->attack();
+    setHealthPlus(20);
     setEnergy(0);
     return true;
 }
@@ -260,11 +290,13 @@ bool Wizard::SuperSkill()
 Berserker::Berserker()
 {
     log("Trying to create Berserker");
+    AudioEngine::preload("Sounds/berserker_superskill.mp3");
     //将帧动画加入角色显示------------------------------------
     auto sfc = SpriteFrameCache::getInstance();
     sfc->addSpriteFramesWithFile("Heroes/BerserkerWalk.plist");
     frames = getAnimation("fighter_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
+    setHealth();
     bindSprite(sprite);
     //------------------------------------------------------------
     health = HEALTH_BERSERKER;
@@ -284,8 +316,51 @@ Weapons* Berserker::bindWeapon()
     return hammer;
 }
 
+void Berserker::setHealth()
+{
+    health = HEALTH_BERSERKER;
+}
+
+void Berserker::setHealthPlus(int n)
+{
+    health += n;
+    if (health >= HEALTH_BERSERKER)
+        health = HEALTH_BERSERKER;
+}
+
 bool Berserker::SuperSkill()
 {
+    auto berserker_audio = AudioEngine::play2d("Sounds/berserker_superskill.mp3", false, 0.7f);
+    AudioEngine::resume(berserker_audio);
+    Vec2 offset = Vec2(1, 0);
+    if (isDirectRight())
+        offset = Vec2(1, 0);
+    else
+        offset = Vec2(-1, 0);
+    // 创建攻击物
+    auto projectile = Glove::create();
+    if (isDirectRight())
+    {
+        projectile->setPosition(sprite->getPosition() );
+    }
+    else
+    {
+        projectile->setPosition(sprite->getPosition() );
+    }
+    if (isDirectRight())
+        ;
+    else
+        projectile->setScaleX(-1.0f);
+    this->addChild(projectile);
+    //获得了一个指向触屏方向的长度为900的向量
+    auto shootAmount = offset * 900;
+    //目标位置
+    auto realDest = shootAmount + projectile->getPosition();
+    //将攻击物移动到目标位置，然后将它从场景中移除
+    auto actionMove = MoveTo::create(1.5f, realDest);
+    auto actionRemove = RemoveSelf::create();
+    projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+    setHealth();
     setEnergy(0);
     return true;
 }
