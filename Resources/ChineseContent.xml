@@ -1,27 +1,41 @@
-<?xml version="1.0" encoding="utf-8" ?>
- <plist>  
-	<dict>
-   		<key>1000</key>  
-    	<string>荒野乱斗</string>  
-	</dict>
-	<dict>
-   		<key>1001</key>  
-    	<string>开始游戏</string>  
-	</dict>
-	<dict>
-	 	<key>1002</key>  
-     	<string>                      健康游戏忠告</string> 
-	</dict>
-	<dict>
-		<key>1003</key>  
-     	<string>抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</string> 
-	</dict>
-	<dict>
-		<key>1004</key>  
-     	<string>适度游戏益脑，过度游戏伤身。合理安排时间，享受健康生活。</string> 
- 	</dict>
-	<dict>
-		<key>1005</key>  
-     	<string>设置</string> 
- 	</dict>
- </plist>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"/>
+
+<plist version="1.0">
+    <dict>
+        <key>1000</key>
+        <string>荒野乱斗</string>
+        <key>1001</key>
+        <string>开始游戏</string>
+        <key>1002</key>
+        <string>                      健康游戏忠告</string>
+        <key>奖杯数量：</key>
+        <string>0</string>
+        <key>1003</key>
+        <string>抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</string>
+        <key>1004</key>
+        <string>适度游戏益脑，过度游戏伤身。合理安排时间，享受健康生活。</string>
+        <key>1005</key>
+        <string>设置</string>
+        <key>1006</key>
+        <string>用户信息</string>
+        <key>1007</key>
+        <string>用户名(最大长度10)：</string>
+        <key>1008</key>
+        <string>奖杯数量：</string>
+        <key>1009</key>
+        <string>吃鸡次数：</string>
+        <key>1010</key>
+        <string>单机游戏</string>
+        <key>1011</key>
+        <string>联机游戏</string>
+        <key>Isfirstrun</key>
+        <string>1</string>
+        <key>Defaultrole</key>
+        <string>test</string>
+        <key>Username</key>
+        <string>我是测试人员</string>
+        <key>吃鸡次数：</key>
+        <string>0</string>
+    </dict>
+</plist>

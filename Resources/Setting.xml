@@ -7,26 +7,13 @@
         <string>背景音乐：</string>
         <key>1002</key>
         <string>游戏音效：</string>
-
-		<key>Music</key>
+        <key>1003</key>
+        <string>游戏音量：</string>
+        <key>MusicEffect</key>
         <string>1</string>
-        <key>Music_1</key>
-        <string>turnon.png</string>
-        <key>Music_2</key>
-        <string>turnoff.png</string>
-        <key>Music_3</key>
-        <string>turnoff.png</string>
-
-		<key>MusicEffect</key>
+        <key>Music</key>
         <string>1</string>
-		<key>MusicEffect_1</key>
-        <string>turnon.png</string>
-        <key>MusicEffect_2</key>
-        <string>turnoff.png</string>
-        <key>MusicEffect_3</key>
-        <string>turnoff.png</string>
-
-        
-        
+        <key>MusicVolume</key>
+        <string>18</string>
     </dict>
 </plist>

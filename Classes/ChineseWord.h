@@ -4,7 +4,7 @@
 #include<cstring>
 #include<fstream>
 USING_NS_CC;
-class ChineseWord  {
+class ChineseWord {
 private:
 	std::string _m_path_read;
 	ValueMap configData;
