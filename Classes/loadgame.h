@@ -3,6 +3,7 @@
 #include "editor-support/cocostudio/SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
 #include"ChineseWord.h"
+#include"Battle.h"
 USING_NS_CC;
 extern ChineseWord Words;
 extern cocos2d::SpriteFrameCache *spritecache;
@@ -10,6 +11,9 @@ extern CocosDenshion::SimpleAudioEngine* audio;
 class loadgame :public cocos2d::Scene
 {
 private:
+	
+	TransitionScene* transition;
+	//cocos2d::Scene* alonegame ;
 	cocos2d::ui::Button* button_back;
 	cocos2d::ui::Button* button_alonegame;
 	cocos2d::ui::Button* button_onlinegame;

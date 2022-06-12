@@ -12,6 +12,11 @@ void Item::bindSprite(Sprite* sprite)
     this->itemsprite = sprite;
     this->addChild(sprite);
 }
+
+void Item::setOpacity(uint8_t alpha)
+{
+	itemsprite->setOpacity(alpha);
+}
 //--------------------------------------------------------------------------------
 
 //Bullet∂®“Â---------------------------------------------------------------------

@@ -4,14 +4,18 @@
 #include "cocos2d.h"
 #include "Weapons.h"
 
-#define ENERGYMAX_KNIGHT 10
-#define ENERGYMAX_BERSERKER 6
-#define ENERGYMAX_WIZARD 16
-#define ENERGYMAX_SCIENTIST 12
-#define HEALTH_KNIGHT 70
-#define HEALTH_BERSERKER 90
-#define HEALTH_WIZARD 50
-#define HEALTH_SCIENTIST 60
+#define ENERGYMAX_KNIGHT 13
+#define ENERGYMAX_BERSERKER 8
+#define ENERGYMAX_WIZARD 30
+#define ENERGYMAX_SCIENTIST 10
+#define ENERGYMAX_KNIGHT_NPC 6
+#define ENERGYMAX_BERSERKER_NPC 3
+#define ENERGYMAX_WIZARD_NPC 15
+#define ENERGYMAX_SCIENTIST_NPC 7
+#define HEALTH_KNIGHT 77
+#define HEALTH_BERSERKER 96
+#define HEALTH_WIZARD 55
+#define HEALTH_SCIENTIST 66
 
 using namespace cocos2d;
 
@@ -26,9 +30,11 @@ protected:
     int health = 20;//血量
     bool rightdirect = true;//朝向
 public:
+    virtual Weapons* bindWeapon()=0;
+	
     int getEnergy();//获得角色的能量值
     void setEnergy(int);//设置角色的能量值
-    void setEnergyOnePlus();//给角色的能量值加一
+    void setEnergyPlus(int);//给角色的能量值加一
     int getHealth();//获得角色的生命值
     virtual void setHealth()=0;//设置角色的生命值
     virtual void setHealthPlus(int)=0;//给角色的生命值增减
@@ -40,7 +46,9 @@ public:
     void bindSprite(Sprite* sprite);//绑定对象
     void Animater(); //让角色在闲置状态下动起来
     //角色的朝向由setScaleX(-1.0f)和(1.0f)决定
-    virtual bool SuperSkill()=0;//角色大招（未完成）
+    virtual bool SuperSkill()=0;//角色大招
+    virtual const int WhatIam() = 0;
+    void setOpacity(uint8_t alpha = 255);//设置精灵透明度
 };
 //-------------------------------------------------------------------------------------------------------------
 
@@ -55,9 +63,14 @@ public:
     void setHealth();
     void setHealthPlus(int);
     bool SuperSkill();
+    //Knight返回1
+    //Scientist返回2	
+    //Wizard返回3
+    //Berserker返回4
+    const int WhatIam();
 protected:
     Sword* sword = Sword::create(); //武器
-    Sprite* KnightSprite = Sprite::create("Heroes/knight.png");
+    Sprite* KnightSprite = Sprite::create("Menus/knight.png");
 };
 //-------------------------------------------------------------------------------------------------------------
 
@@ -72,9 +85,15 @@ public:
     void setHealth();
     void setHealthPlus(int);
     bool SuperSkill();
+    //Knight返回1
+    //Scientist返回2	
+    //Wizard返回3
+    //Berserker返回4
+    const int WhatIam();
 protected:
     Revolver* revolver = Revolver::create(); //武器
-    Sprite* ScientistSprite = Sprite::create("Heroes/scientist.png");
+    Sprite* ScientistSprite = Sprite::create("Menus/scientist.png"); ;
+    SpriteFrameCache* sfc;
 };
 //-------------------------------------------------------------------------------------------------------------
 
@@ -89,9 +108,14 @@ public:
     void setHealth();
     void setHealthPlus(int);
     bool SuperSkill();
+    //Knight返回1
+    //Scientist返回2	
+    //Wizard返回3
+    //Berserker返回4
+    const int WhatIam();
 protected:
     Wand* wand = Wand::create(); //武器
-    Sprite* WizardSprite = Sprite::create("Heroes/wizard.png");
+    Sprite* WizardSprite = Sprite::create("Menus/wizard.png");
 };
 //-------------------------------------------------------------------------------------------------------------
 
@@ -106,9 +130,14 @@ public:
     void setHealth();
     void setHealthPlus(int);
     bool SuperSkill();
+    //Knight返回1
+    //Scientist返回2	
+    //Wizard返回3
+    //Berserker返回4
+    const int WhatIam();
 protected:
     Hammer* hammer = Hammer::create(); //武器
-    Sprite* BerserkerSprite = Sprite::create("Heroes/berserker.png");
+    Sprite* BerserkerSprite = Sprite::create("Menus/fighter.png");
 };
 //-------------------------------------------------------------------------------------------------------------
 

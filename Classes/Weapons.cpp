@@ -13,8 +13,12 @@ int Weapons::getDamage()
 
 void Weapons::setDirectLeft()
 {
-	itemsprite->setScaleX(-1.0f);
-	rightdirect = false;
+	if (isDirectRight()) {
+		itemsprite->setScaleX(-1.0f);
+		rightdirect = false;
+	}
+		
+	
 }
 
 void Weapons::setDirectRight()
@@ -65,7 +69,7 @@ bool Wand::init()
 
 void Wand::attack()
 {
-	auto weapon_audio = AudioEngine::play2d("Sounds/wizard_wand.mp3", false,1.2f);
+	auto weapon_audio = AudioEngine::play2d("Sounds/wizard_wand.mp3", false,1.2f * volume);
 	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.4f / 8);
 	auto animate = Animate::create(animation);
@@ -101,7 +105,7 @@ bool Hammer::init()
 
 void Hammer::attack()
 {
-	auto weapon_audio = AudioEngine::play2d("Sounds/berserker_hammer.mp3", false);
+	auto weapon_audio = AudioEngine::play2d("Sounds/berserker_hammer.mp3", false, volume);
 	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.7f / 8);
 	auto animate = Animate::create(animation);
@@ -147,7 +151,7 @@ bool Revolver::init()
 
 void Revolver::attack()
 {
-	auto weapon_audio = AudioEngine::play2d("Sounds/scientist_revolver.mp3", false,0.3f);
+	auto weapon_audio = AudioEngine::play2d("Sounds/scientist_revolver.mp3", false,0.3f * volume);
 	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.3f / 8);
 	auto animate = Animate::create(animation);
@@ -181,7 +185,7 @@ bool Sword::init()
 
 void Sword::attack()
 {
-	auto weapon_audio = AudioEngine::play2d("Sounds/knight_sword.mp3", false,1.2f);
+	auto weapon_audio = AudioEngine::play2d("Sounds/knight_sword.mp3", false,1.2f * volume);
 	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.4f / 8);
 	auto animate = Animate::create(animation);
@@ -203,7 +207,7 @@ SwordBonus::SwordBonus()
 	frames = getAnimation("sword_bonus%d.png", 4);
 	itemsprite = Sprite::createWithSpriteFrame(frames.front());
 	bindSprite(itemsprite);
-	setDamage(30);
+	setDamage(35);
 	if (itemsprite == nullptr)
 	{
 		log("Failed to create SwordBonus sprite.");
@@ -217,7 +221,7 @@ bool SwordBonus::init()
 
 void SwordBonus::attack()
 {
-	auto weapon_audio = AudioEngine::play2d("Sounds/knight_superskill.mp3", false,1.3f);
+	auto weapon_audio = AudioEngine::play2d("Sounds/knight_superskill.mp3", false,1.3f * volume);
 	AudioEngine::resume(weapon_audio);
 	auto animation = Animation::createWithSpriteFrames(frames, 0.5f / 8);
 	auto animate = Animate::create(animation);

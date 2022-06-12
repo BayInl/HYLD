@@ -7,10 +7,12 @@
         <string>荒野乱斗</string>
         <key>1001</key>
         <string>开始游戏</string>
-        <key>1002</key>
-        <string>                      健康游戏忠告</string>
         <key>奖杯数量：</key>
         <string>0</string>
+        <key>1002</key>
+        <string>                      健康游戏忠告</string>
+        <key>Wizard</key>
+        <string>远程英雄，血量55</string>
         <key>1003</key>
         <string>抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</string>
         <key>1004</key>
@@ -19,6 +21,10 @@
         <string>设置</string>
         <key>1006</key>
         <string>用户信息</string>
+        <key>NPC数量:</key>
+        <string>3</string>
+        <key>Berserker</key>
+        <string>近战英雄，血量96</string>
         <key>1007</key>
         <string>用户名(最大长度10)：</string>
         <key>1008</key>
@@ -29,6 +35,12 @@
         <string>单机游戏</string>
         <key>1011</key>
         <string>联机游戏</string>
+        <key>1012</key>
+        <string>Scientist</string>
+        <key>1013</key>
+        <string>NPC数量:</string>
+        <key>1014</key>
+        <string>当前角色：</string>
         <key>Isfirstrun</key>
         <string>1</string>
         <key>Defaultrole</key>
@@ -37,5 +49,9 @@
         <string>我是测试人员</string>
         <key>吃鸡次数：</key>
         <string>0</string>
+        <key>Knight</key>
+        <string>近战英雄，血量77</string>
+        <key>Scientist</key>
+        <string>远程英雄，血量66</string>
     </dict>
 </plist>

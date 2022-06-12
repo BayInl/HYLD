@@ -27,14 +27,17 @@ void loadgame::_set_button_alonegame()
 	button_alonegame->setTitleText(Words.getWord("1010"));
 	button_alonegame->setTitleFontSize(30);
 	button_alonegame->setTitleFontName("宋体");
-	//将文本颜色设置为（3，5，7）
 	button_alonegame->setTitleColor(Color3B(199, 230, 232));
 	button_alonegame->setAnchorPoint(Vec2(0.5, 0));
 	button_alonegame->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2+50));
 	button_alonegame->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
+		cocos2d::Scene* alonegame;
 		switch (type) {
 		case ui::Widget::TouchEventType::ENDED:
-			Director::getInstance()->popScene();
+			audio->stopBackgroundMusic();
+			alonegame = Battle::createScene();
+			transition = TransitionFade::create(0.5f, alonegame);//创建动画
+			Director::getInstance()->pushScene(transition);
 			break;
 		default:
 			break;
@@ -82,6 +85,7 @@ bool loadgame::init()
 {
     if (!Scene::init())
         return false;
+	
 	_set_background();
 	_set_button_back();
 	Health_game_advice();

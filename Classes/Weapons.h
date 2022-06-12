@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Item.h"
+#include "GlobalVars.h"
 
 using namespace cocos2d;
 
@@ -13,6 +14,7 @@ class Weapons:public Item
 protected:
 	int damage = 0;//伤害
 	bool rightdirect = true;//朝向
+	float volume = (switch_sound_ ? volume_ : 0.0f);
 public:
 	void setDamage(int damage_);//设置武器攻击力
 	int getDamage();//获取武器攻击力

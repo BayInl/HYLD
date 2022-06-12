@@ -1,6 +1,4 @@
 #include "Heroes.h"
-
-
 //英雄基类定义-----------------------------------------------------------------------------------
 int Hero::getEnergy()
 {
@@ -12,9 +10,9 @@ void Hero::setEnergy(int n)
     energy = n;
 }
 
-void Hero::setEnergyOnePlus()
+void Hero::setEnergyPlus(int n)
 {
-    energy++;
+    energy += n;
 }
 
 int Hero::getHealth()
@@ -24,14 +22,18 @@ int Hero::getHealth()
 
 void Hero::setDirectLeft()
 {
-    sprite->setScaleX(-1.0f);
-    rightdirect = false;
+    if (rightdirect) {
+        sprite->setScaleX(-1.0f);
+        rightdirect = false;
+    }
 }
 
 void Hero::setDirectRight()
 {
-    sprite->setScaleX(1.0f);
-    rightdirect = true;
+	if (!rightdirect) {
+		sprite->setScaleX(1.0f);
+		rightdirect = true;
+	}
 }
 
 bool Hero::isDirectRight()
@@ -67,6 +69,11 @@ void Hero::Animater()
 {
     auto animation = Animation::createWithSpriteFrames(frames, 1.0f / 8);
     sprite->runAction(RepeatForever::create(Animate::create(animation)));
+}
+
+void Hero::setOpacity(uint8_t alpha)
+{
+    sprite->setOpacity(alpha);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -115,8 +122,15 @@ void Knight::setHealthPlus(int n)
 
 bool Knight::SuperSkill()
 {
-    setEnergy(0);
     return true;
+}
+//Knight返回1
+//Scientist返回2	
+//Wizard返回3
+//Berserker返回4
+const int Knight::WhatIam()
+{
+    return 1;
 }
 //--------------------------------------------------------------------------------------------------
 
@@ -126,7 +140,7 @@ Scientist::Scientist()
 {
     log("Trying to create Scientist");
     //将帧动画加入角色显示------------------------------------
-    auto sfc = SpriteFrameCache::getInstance();
+    sfc = SpriteFrameCache::getInstance();
     sfc->addSpriteFramesWithFile("Heroes/ScientistWalk.plist");
     frames = getAnimation("scientist_walk%d.png", 2);
     sprite = Sprite::createWithSpriteFrame(frames.front());
@@ -165,48 +179,17 @@ void Scientist::setHealthPlus(int n)
 
 bool Scientist::SuperSkill()
 {
-    Vec2 offset[8] = { Vec2(1, 0), Vec2(1, 1) ,Vec2(1, -1),Vec2(-1, 0) ,Vec2(-1, 1) ,Vec2(-1, -1),Vec2(0, 1),Vec2(0, -1) };
-    Vec2 shootAmount[8];
-    Vec2 realDest[8];
-    // 创建攻击物
-    BulletBonus* projectiles[8];
-    for(int i=0;i<8;i++)
-        projectiles[i] = BulletBonus::create();
-    if (isDirectRight())
-    {
-        for (int i = 0; i < 8; i++)
-            projectiles[i]->setPosition(sprite->getPosition() );
-    }
-    else
-    {
-        for (int i = 0; i < 8; i++)
-            projectiles[i]->setPosition(sprite->getPosition() );
-    }
-    projectiles[1]->setRotation(-45);
-    projectiles[2]->setRotation(45);
-    projectiles[3]->setRotation(-180);
-    projectiles[4]->setRotation(-135);
-    projectiles[5]->setRotation(135);
-    projectiles[6]->setRotation(-90);
-    projectiles[7]->setRotation(90);
-    for (int i = 0; i < 8; i++)
-        this->addChild(projectiles[i]);
-    //获得了一个指向触屏方向的长度为654的向量
-    for(int i=0;i<8;i++)
-        shootAmount[i] = offset[i] * 654;
-    //目标位置
-    for (int i = 0; i < 8; i++)
-        realDest[i] = shootAmount[i] + projectiles[i]->getPosition();
-    //将攻击物移动到目标位置，然后将它从场景中移除
-    MoveTo* actionMove[8];
-    for (int i = 0; i < 8; i++)
-        actionMove[i] = MoveTo::create(0.4f, realDest[i]);
-    auto actionRemove = RemoveSelf::create();
-    for (int i = 0; i < 8; i++)
-        projectiles[i]->runAction(Sequence::create(actionMove[i], actionRemove, nullptr));
     revolver->attack();
     setEnergy(0);
     return true;
+}
+//Knight返回1
+//Scientist返回2	
+//Wizard返回3
+//Berserker返回4
+const int Scientist::WhatIam()
+{
+    return 2;
 }
 //--------------------------------------------------------------------------------------------------
 
@@ -254,35 +237,18 @@ void Wizard::setHealthPlus(int n)
 
 bool Wizard::SuperSkill()
 {
-    Vec2 offset = Vec2(1, 0);
-    if(isDirectRight())
-        offset = Vec2(1, 0);
-    else
-        offset = Vec2(-1, 0);
-    // 创建攻击物
-    auto projectile = LightBonus::create();
-    projectile->setScale(1.6f, 2.1f);
-    if (isDirectRight())
-    {
-        projectile->setPosition(sprite->getPosition() - Vec2(3, 30));
-    }
-    else
-    {
-        projectile->setPosition(sprite->getPosition() - Vec2(-3, 30));
-    }
-    this->addChild(projectile);
-    //获得了一个指向触屏方向的长度为2500的向量
-    auto shootAmount = offset * 2500;
-    //目标位置
-    auto realDest = shootAmount + projectile->getPosition();
-    //将攻击物移动到目标位置，然后将它从场景中移除
-    auto actionMove = MoveTo::create(12.5f, realDest);
-    auto actionRemove = RemoveSelf::create();
-    projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
     wand->attack();
     setHealthPlus(20);
     setEnergy(0);
     return true;
+}
+//Knight返回1
+//Scientist返回2	
+//Wizard返回3
+//Berserker返回4
+const int Wizard::WhatIam()
+{
+    return 3;
 }
 //--------------------------------------------------------------------------------------------------
 
@@ -330,38 +296,16 @@ void Berserker::setHealthPlus(int n)
 
 bool Berserker::SuperSkill()
 {
-    auto berserker_audio = AudioEngine::play2d("Sounds/berserker_superskill.mp3", false, 0.7f);
-    AudioEngine::resume(berserker_audio);
-    Vec2 offset = Vec2(1, 0);
-    if (isDirectRight())
-        offset = Vec2(1, 0);
-    else
-        offset = Vec2(-1, 0);
-    // 创建攻击物
-    auto projectile = Glove::create();
-    if (isDirectRight())
-    {
-        projectile->setPosition(sprite->getPosition() );
-    }
-    else
-    {
-        projectile->setPosition(sprite->getPosition() );
-    }
-    if (isDirectRight())
-        ;
-    else
-        projectile->setScaleX(-1.0f);
-    this->addChild(projectile);
-    //获得了一个指向触屏方向的长度为900的向量
-    auto shootAmount = offset * 900;
-    //目标位置
-    auto realDest = shootAmount + projectile->getPosition();
-    //将攻击物移动到目标位置，然后将它从场景中移除
-    auto actionMove = MoveTo::create(1.5f, realDest);
-    auto actionRemove = RemoveSelf::create();
-    projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
     setHealth();
     setEnergy(0);
     return true;
+}
+//Knight返回1
+//Scientist返回2	
+//Wizard返回3
+//Berserker返回4
+const int Berserker::WhatIam()
+{
+    return 4;
 }
 //--------------------------------------------------------------------------------------------------

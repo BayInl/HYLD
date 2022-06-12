@@ -15,6 +15,7 @@ protected:
 public:
 	Sprite* getSprite();//获取精灵对象
 	void bindSprite(Sprite* sprite);//绑定对象
+	void setOpacity(uint8_t alpha = 255);//设置精灵透明度
 };
 //---------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ public:
 class Bullet :public Item
 {
 protected:
-	int damage = 4;
+	int damage = 5;
 public:
 	Bullet();
 	bool init()override;
@@ -49,7 +50,7 @@ public:
 class Light :public Item
 {
 protected:
-	int damage = 2;
+	int damage = 1;
 public:
 	Light();
 	Vector<SpriteFrame*> Light::getAnimation(const char* format, int count);//动画
@@ -63,7 +64,7 @@ public:
 class LightBonus :public Item
 {
 protected:
-	int damage = 24;
+	int damage = 2;
 public:
 	LightBonus();
 	Vector<SpriteFrame*>  LightBonus::getAnimation(const char* format, int count); //动画
@@ -77,7 +78,7 @@ public:
 class Glove :public Item
 {
 protected:
-	int damage = 18;
+	int damage = 24;
 public:
 	Glove();
 	bool init()override;
@@ -139,7 +140,7 @@ public:
 	int getDamage();//获取攻击力
 	int getHeal();//获取治疗量
 	int getCharge();//获取能量值
-	int isWhat(); //随机抽取0和1赋给judge并返回
+	int isWhat(); //随机抽取0和1赋给judge并返回，1是伤害，0是恢复
 	CREATE_FUNC(BoxWhat);
 };
 //---------------------------------------------------------------------------------------------------------

@@ -2,12 +2,12 @@
 #pragma warning(disable:26495)
 #pragma warning(disable:26451)
 #include "cocos2d.h"
-#include"ChineseWord.h"
 #include "ui/CocosGUI.h"
 #include<string.h>
-#include "loadgame.h"
+#include"Heroes.h"
+#include"loadgame.h"
+#include "GlobalVars.h"
 USING_NS_CC;
-extern ChineseWord Words;
 struct inf_button {
     bool is_turnon = true;
     std::string firstpath;
@@ -17,6 +17,9 @@ struct inf_button {
 class GameIntefrace : public cocos2d::Scene
 {
 private:
+    Hero* myhero;
+    SwordBonus *sword_bonus;
+    Weapons* weapons;
     cocos2d::Scene* scene_loadgame;
     TransitionScene* transition;
     cocos2d::Layer* _layer_initial_;
@@ -25,7 +28,7 @@ private:
     inf_button flag_setting;
     inf_button music_effect;
     inf_button music_background;
-    int volume;
+
 	//_layer_initial_
     cocos2d::ui::Button* button_set;
     cocos2d::ui::Button* button_set_music_effect;
@@ -33,9 +36,15 @@ private:
     cocos2d::ui::Button* button_playgame;
     cocos2d::ui::Button* button_infor;
     cocos2d::ui::Slider* slider_set_volume;
-
+    cocos2d::ui::Slider* slider_set_hero;
+    cocos2d::ui::Slider* slider_set_npcnum;
+    cocos2d::Label* label_npcnum_description;
+    cocos2d::Label* label_hero_select;
+    cocos2d::Label* label_hero_description;
     cocos2d::Label* label_volume_description;
     cocos2d::Label* _label_adver_0;
+    cocos2d::Texture2D* pTexture;
+    cocos2d::Sprite* edge;
 	
     DrawNode* _line_0;
     ChineseWord setting;
@@ -46,8 +55,11 @@ private:
     void _set_button_music_background();//背景音乐按钮
     void _set_button_music_effect();//音效按钮
 	void _set_button_music_effect_volume();
+    void _set_slider_npcnum();
     void playgame();//开始游戏按钮
     void _set_button_infor();//个人信息按钮
+    void _set_hero();
+	void _set_npcnum();
 
 	//_layer_infor_
 	cocos2d::ui::Button* button_back;
