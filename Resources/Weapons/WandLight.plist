@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>wand_light0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{240,115}</string>
+                <key>spriteSourceSize</key>
+                <string>{240,115}</string>
+                <key>textureRect</key>
+                <string>{{1,235},{240,115}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>2 6 7 3 6 2 4 6 3 4 5 6 1 2 7 0 1 7</string>
+                <key>vertices</key>
+                <string>240 12 240 72 197 115 0 115 0 30 4 22 52 0 218 0</string>
+                <key>verticesUV</key>
+                <string>241 247 241 307 198 350 1 350 1 265 5 257 53 235 219 235</string>
+            </dict>
+            <key>wand_light1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{240,115}</string>
+                <key>spriteSourceSize</key>
+                <string>{240,115}</string>
+                <key>textureRect</key>
+                <string>{{1,118},{240,115}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>2 5 6 3 4 5 2 3 5 0 1 2 0 2 6</string>
+                <key>vertices</key>
+                <string>240 23 240 86 206 115 0 115 0 22 55 0 222 0</string>
+                <key>verticesUV</key>
+                <string>241 141 241 204 207 233 1 233 1 140 56 118 223 118</string>
+            </dict>
+            <key>wand_light2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{240,115}</string>
+                <key>spriteSourceSize</key>
+                <string>{240,115}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{240,115}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>3 7 8 4 7 3 4 5 6 4 6 7 2 3 8 0 1 2 0 2 8</string>
+                <key>vertices</key>
+                <string>240 21 240 88 205 113 198 115 27 115 0 88 0 35 14 0 219 0</string>
+                <key>verticesUV</key>
+                <string>241 22 241 89 206 114 199 116 28 116 1 89 1 36 15 1 220 1</string>
+            </dict>
+            <key>wand_light3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{240,115}</string>
+                <key>spriteSourceSize</key>
+                <string>{240,115}</string>
+                <key>textureRect</key>
+                <string>{{1,118},{240,115}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>2 5 6 3 4 5 2 3 5 0 1 2 0 2 6</string>
+                <key>vertices</key>
+                <string>240 23 240 86 206 115 0 115 0 22 55 0 222 0</string>
+                <key>verticesUV</key>
+                <string>241 141 241 204 207 233 1 233 1 140 56 118 223 118</string>
+            </dict>
+            <key>wand_light4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{240,115}</string>
+                <key>spriteSourceSize</key>
+                <string>{240,115}</string>
+                <key>textureRect</key>
+                <string>{{1,235},{240,115}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>2 6 7 3 6 2 4 6 3 4 5 6 1 2 7 0 1 7</string>
+                <key>vertices</key>
+                <string>240 12 240 72 197 115 0 115 0 30 4 22 52 0 218 0</string>
+                <key>verticesUV</key>
+                <string>241 247 241 307 198 350 1 350 1 265 5 257 53 235 219 235</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>WandLight.png</string>
+            <key>size</key>
+            <string>{242,351}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:065e2e9ced81d7bdfaebd83fe0ee4d00:a9dc872af014afd5fb08d7b4dbcd4099:73ad710034de67bf78377e8ca113b02a$</string>
+            <key>textureFileName</key>
+            <string>WandLight.png</string>
+        </dict>
+    </dict>
+</plist>
