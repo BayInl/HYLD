@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>wizard_walk0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{70,77}</string>
+                <key>spriteSourceSize</key>
+                <string>{70,77}</string>
+                <key>textureRect</key>
+                <string>{{1,159},{70,77}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>4 6 7 4 5 6 2 0 1 2 3 4 2 4 0 0 4 7</string>
+                <key>vertices</key>
+                <string>70 14 70 77 11 77 0 66 0 27 8 1 13 0 36 0</string>
+                <key>verticesUV</key>
+                <string>71 173 71 236 12 236 1 225 1 186 9 160 14 159 37 159</string>
+            </dict>
+            <key>wizard_walk1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{70,77}</string>
+                <key>spriteSourceSize</key>
+                <string>{70,77}</string>
+                <key>textureRect</key>
+                <string>{{1,80},{70,77}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>3 5 6 3 4 5 2 3 6 1 2 6 0 1 6</string>
+                <key>vertices</key>
+                <string>70 15 70 77 0 77 0 13 8 1 13 0 33 0</string>
+                <key>verticesUV</key>
+                <string>71 95 71 157 1 157 1 93 9 81 14 80 34 80</string>
+            </dict>
+            <key>wizard_walk2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{70,77}</string>
+                <key>spriteSourceSize</key>
+                <string>{70,77}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{70,77}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>3 5 6 3 4 5 2 3 6 1 2 6 0 1 6</string>
+                <key>vertices</key>
+                <string>70 15 70 77 0 77 0 13 8 1 13 0 33 0</string>
+                <key>verticesUV</key>
+                <string>71 16 71 78 1 78 1 14 9 2 14 1 34 1</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>WizardWalk.png</string>
+            <key>size</key>
+            <string>{72,237}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f68dc5ea696274cdf9854ee5fba8dd83:c76b299d90ebeec6e6f4f56a24968937:99306a7e4ad9f15ae1f9d62059d8dc04$</string>
+            <key>textureFileName</key>
+            <string>WizardWalk.png</string>
+        </dict>
+    </dict>
+</plist>

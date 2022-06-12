@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>hammer0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-17}</string>
+                <key>spriteSize</key>
+                <string>{100,66}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{104,93},{100,66}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>0 6 7 2 4 5 2 3 4 1 5 6 1 2 5 0 1 6</string>
+                <key>vertices</key>
+                <string>100 100 55 100 0 76 0 59 4 55 41 50 58 34 100 34</string>
+                <key>verticesUV</key>
+                <string>204 159 159 159 104 135 104 118 108 114 145 109 162 93 204 93</string>
+            </dict>
+            <key>hammer1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-14,0}</string>
+                <key>spriteSize</key>
+                <string>{72,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{92,1},{72,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>5 6 7 1 5 7 4 5 1 4 2 3 4 1 2 0 1 7</string>
+                <key>vertices</key>
+                <string>72 1 63 55 40 100 23 100 20 98 0 43 0 0 57 0</string>
+                <key>verticesUV</key>
+                <string>164 2 155 56 132 101 115 101 112 99 92 44 92 1 149 1</string>
+            </dict>
+            <key>hammer2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-6,0}</string>
+                <key>spriteSize</key>
+                <string>{88,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{88,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>4 5 6 1 4 6 2 3 4 1 2 4 0 1 6</string>
+                <key>vertices</key>
+                <string>88 30 69 63 18 100 0 100 0 25 25 0 38 0</string>
+                <key>verticesUV</key>
+                <string>89 31 70 64 19 101 1 101 1 26 26 1 39 1</string>
+            </dict>
+            <key>hammer3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-8}</string>
+                <key>spriteSize</key>
+                <string>{100,84}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{2,71},{100,84}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>2 0 1 4 2 3 4 5 2 2 5 0 0 5 6</string>
+                <key>vertices</key>
+                <string>100 64 100 90 54 100 0 100 0 82 35 36 71 16</string>
+                <key>verticesUV</key>
+                <string>102 119 102 145 56 155 2 155 2 137 37 91 73 71</string>
+            </dict>
+            <key>hammer4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-17}</string>
+                <key>spriteSize</key>
+                <string>{100,66}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{104,93},{100,66}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>0 6 7 2 4 5 2 3 4 1 5 6 1 2 5 0 1 6</string>
+                <key>vertices</key>
+                <string>100 100 55 100 0 76 0 59 4 55 41 50 58 34 100 34</string>
+                <key>verticesUV</key>
+                <string>204 159 159 159 104 135 104 118 108 114 145 109 162 93 204 93</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>Hammer.png</string>
+            <key>size</key>
+            <string>{205,160}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:dc437197e9b012fee165a83295d938ff:8b7c5d10e72fe7cd800dd3e4dfa0e308:a8382d096b26719a90485bc623e15092$</string>
+            <key>textureFileName</key>
+            <string>Hammer.png</string>
+        </dict>
+    </dict>
+</plist>
